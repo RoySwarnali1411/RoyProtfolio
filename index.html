@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Talented Professional Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --secondary: #10b981;
+            --accent: #f59e0b;
+            --dark: #1e293b;
+            --light: #f8fafc;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            scroll-behavior: smooth;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        }
+        
+        .role-card {
+            transition: all 0.3s ease;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .role-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .project-card {
+            transition: all 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: scale(1.03);
+        }
+        
+        .video-thumbnail {
+            position: relative;
+            overflow: hidden;
+            border-radius: 0.5rem;
+        }
+        
+        .video-thumbnail::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .video-thumbnail:hover::before {
+            background: rgba(0, 0, 0, 0.1);
+        }
+        
+        .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 3rem;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+        
+        .video-thumbnail:hover .play-icon {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .skill-badge {
+            transition: all 0.3s ease;
+        }
+        
+        .skill-badge:hover {
+            transform: scale(1.05);
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white shadow-md z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="#" class="text-xl font-bold text-indigo-600">Swarnali Roy</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="nav-link text-gray-700 hover:text-indigo-600">Home</a>
+                    <a href="#about" class="nav-link text-gray-700 hover:text-indigo-600">About</a>
+                    <a href="#roles" class="nav-link text-gray-700 hover:text-indigo-600">Roles</a>
+                    <!-- <a href="#projects" class="nav-link text-gray-700 hover:text-indigo-600">Projects</a> -->
+                    <a href="#videos" class="nav-link text-gray-700 hover:text-indigo-600">Videos</a>
+                    <a href="#contact" class="nav-link text-gray-700 hover:text-indigo-600">Contact</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="menu-btn" class="text-gray-700 hover:text-indigo-600">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50">Home</a>
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50">About</a>
+                <a href="#roles" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50">Roles</a>
+                <!-- <a href="#projects" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50">Projects</a> -->
+                <a href="#videos" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50">Videos</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-gradient pt-32 pb-20 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">Hi, I'm <span class="text-yellow-300">Swarnali Roy</span></h1>
+                    <p class="text-xl mb-8 opacity-90">Project Manager | Web Designer | YouTube Influencer</p>
+                    <div class="flex space-x-4">
+                        <a href="#contact" class="bg-white text-indigo-600 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition duration-300">Message Me</a>
+                        <a href="./Assert/Swarnali_Roy.pdf" class="border-2 border-white text-white px-6 py-3 rounded-full font-semibold hover:bg-white hover:text-indigo-600 transition duration-300">My Resume</a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <img src="./Assert/photome.jpg" 
+                         alt="Professional Headshot" 
+                         class="rounded-full w-64 h-64 md:w-80 md:h-80 object-cover border-4 border-white shadow-xl floating">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">About Me</h2>
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/3 mb-10 md:mb-0 flex justify-center">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" 
+                         alt="About Me" 
+                         class="rounded-lg w-full max-w-md shadow-lg">
+                </div>
+                <div class="md:w-2/3 md:pl-12">
+                    <p class="text-lg text-gray-600 mb-6"> Dedicated and adaptable professional with 2.5+ years of combined experience in project management, 
+                        coordination, and hands-on software development. Skilled in leading and supporting cross-functional 
+                        teams within Agile, Scrum, SDLC, and hybrid environments to ensure seamless project execution from 
+                        planning through delivery. Proficient in tools such as JIRA, Confluence, Asana, and Power BI, with the ability 
+                        to effectively bridge business needs and technical implementation. Technically sound with practical 
+                        knowledge of JavaScript and Python, along with a strong foundation in HTML and CSS. Currently pursuing 
+                        an MBA in Information Technology to enhance strategic decision-making and align technical execution with 
+                        business goals. </p>
+                    <p class="text-lg text-gray-600 mb-6">
+                        What sets me apart is my ability to see projects from multiple perspectives: the creative vision of a designer, the organizational mindset of a project manager, and the audience-focused approach of a content creator.
+                    </p>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mt-8">
+                        <div class="skill-badge bg-indigo-100 text-indigo-800 px-4 py-2 rounded-full text-center font-medium">Project Management</div>
+                        <div class="skill-badge bg-green-100 text-green-800 px-4 py-2 rounded-full text-center font-medium">Web Design</div>
+                        <div class="skill-badge bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full text-center font-medium">Microsoft Project</div>
+                        <div class="skill-badge bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-center font-medium">Agile/ JIRA /ZOHO project managment</div>
+                        <div class="skill-badge bg-red-100 text-red-800 px-4 py-2 rounded-full text-center font-medium">SDLC</div>
+                        <div class="skill-badge bg-purple-100 text-purple-800 px-4 py-2 rounded-full text-center font-medium">Content Creation</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roles Section -->
+    <section id="roles" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">My Professional Roles</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Project Manager Card -->
+                <div class="role-card bg-white">
+                    <div class="p-6">
+                        <div class="flex justify-center mb-4">
+                            <div class="bg-indigo-100 p-4 rounded-full">
+                                <i class="fas fa-project-diagram text-indigo-600 text-3xl"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold text-center mb-3 text-gray-800">Project Manager</h3>
+                        <p class="text-gray-600 text-center mb-4">
+                            Leading cross-functional teams to deliver digital projects on time and within budget while maintaining stakeholder satisfaction.
+                        </p>
+                        <div class="mt-6">
+                            <h4 class="font-semibold text-gray-700 mb-2">Key Skills:</h4>
+                            <ul class="space-y-2">
+                                <li class="flex items-center">
+                                    <i class="fas fa-check-circle text-indigo-500 mr-2"></i>
+                                    <span>Agile & Scrum Methodologies</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check-circle text-indigo-500 mr-2"></i>
+                                    <span>Risk Management</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check-circle text-indigo-500 mr-2"></i>
+                                    <span>Stakeholder Communication</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check-circle text-indigo-500 mr-2"></i>
+                                    <span>Resource Allocation</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Web Designer Card -->
+                <div class="role-card bg-white">
+                    <div class="p-6">
+                        <div class="flex justify-center mb-4">
+                            <div class="bg-green-100 p-4 rounded-full">
+                                <i class="fas fa-paint-brush text-green-600 text-3xl"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold text-center mb-3 text-gray-800">Web Designer</h3>
+                        <p class="text-gray-600 text-center mb-4">
+                            Creating visually stunning and highly functional websites that deliver exceptional user experiences.
+                        </p>
+                        <div class="mt-6">
+                            <h4 class="font-semibold text-gray-700 mb-2">Key Skills:</h4>
+                            <ul class="space-y-2">
+                                <li class="flex items-center">
+                                    <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                    <span>UI/UX Design</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                    <span>Responsive Design</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                    <span>HTML/CSS/JavaScript</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                    <span>Figma</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- YouTube Influencer Card -->
+                <div class="role-card bg-white">
+                    <div class="p-6">
+                        <div class="flex justify-center mb-4">
+                            <div class="bg-yellow-100 p-4 rounded-full">
+                                <i class="fas fa-video text-yellow-600 text-3xl"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold text-center mb-3 text-gray-800">YouTube Influencer</h3>
+                        <p class="text-gray-600 text-center mb-4">
+                            Creating engaging content about web design, project management, and digital career growth for 50K+ subscribers.
+                        </p>
+                        <div class="mt-6">
+                            <h4 class="font-semibold text-gray-700 mb-2">Key Skills:</h4>
+                            <ul class="space-y-2">
+                                <li class="flex items-center">
+                                    <i class="fas fa-check-circle text-yellow-500 mr-2"></i>
+                                    <span>Content Strategy</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check-circle text-yellow-500 mr-2"></i>
+                                    <span>Video Production</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check-circle text-yellow-500 mr-2"></i>
+                                    <span>Audience Engagement</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check-circle text-yellow-500 mr-2"></i>
+                                    <span>SEO Optimization</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+
+   <!-- Videos Section -->
+<section id="videos" class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">YouTube Videos</h2>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Video 1 -->
+            <div class="video-thumbnail">
+                <a href="https://youtu.be/6IGo_2bJX4c?si=klEA0n1iUs0rHRQ-" target="_blank">
+                    <img src="./Assert/Strength and weekness.jpg" alt="Video Title 1" class="w-full h-full object-cover">
+                    <div class="play-icon">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </a>
+            </div>
+            <!-- Video 2 -->
+            <div class="video-thumbnail">
+                <a href="https://youtu.be/njop9rwySZU?si=qPHZYCWKemjHlZf_" target="_blank">
+                    <img src="./Assert/Amity_Review.jpg" alt="Video Title 2" class="w-full h-full object-cover">
+                    <div class="play-icon">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </a>
+            </div>
+            <!-- Video 3 -->
+            <div class="video-thumbnail">
+                <a href="https://youtu.be/CdN13PNqZpE?si=xxw5LqlXd6O1wNRJ" target="_blank">
+                    <img src="./Assert/Iwishiknew.jpg" alt="Video Title 3" class="w-full h-full object-cover">
+                    <div class="play-icon">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Watch More Videos Link -->
+        <div class="text-center mt-12">
+            <a href="https://youtube.com/@codewithswarnali-1411?si=8NTEsto-br3oGLM6" target="_blank"
+               class="inline-block px-6 py-3 border-2 border-indigo-600 text-indigo-600 font-semibold rounded-full hover:bg-indigo-600 hover:text-white transition duration-300">
+                Watch More Videos
+            </a>
+        </div>
+    </div>
+</section>
+
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Contact Me</h2>
+            <form action="#" method="POST" class="max-w-lg mx-auto">
+                <div class="mb-4">
+                    <label for="name" class="block text-gray-700">Name</label>
+                    <input type="text" id="name" name="name" required class="w-full border border-gray-300 p-2 rounded">
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block text-gray-700">Email</label>
+                    <input type="email" id="email" name="email" required class="w-full border border-gray-300 p-2 rounded">
+                </div>
+                <div class="mb-4">
+                    <label for="message" class="block text-gray-700">Message</label>
+                    <textarea id="message" name="message" required class="w-full border border-gray-300 p-2 rounded"></textarea>
+                </div>
+                <button type="submit" class="bg-indigo-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-indigo-700 transition duration-300">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-6 bg-gray-800 text-white text-center">
+        <p>&copy; 2025 Swarnali Roy. All rights reserved.</p>
+    </footer>
+</body>
+</html>
